@@ -136,7 +136,7 @@ function print() { __p += __j.call(arguments, '') }
   color: #2f2a2a;
 `,VP=_t.h1`
   color: whitesmoke;
-`,YP="/momence/assets/arrow-4fb190aa.png",bP=_t.div`
+`,YP="/hw_momence/assets/arrow-4fb190aa.png",bP=_t.div`
   display: flex;
   gap: 20px;
   align-items: end;
