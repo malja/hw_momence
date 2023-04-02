@@ -1,18 +1,16 @@
-const { createProxyMiddleware } = require('http-proxy-middleware')
+const { createProxyMiddleware, responseInterceptor } = require('http-proxy-middleware')
 
 const proxy = createProxyMiddleware({
     target: process.env.EXTERNAL_API_URL,
     changeOrigin: true,
-    onError: (err, req, res) => {
-        console.error('Proxy error:', err)
-        res.status(500).send('Proxy error')
+    selfHandleResponse: true,
+
+    on: {
+      proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
+        res.setHeader('Access-Control-Allow-Origin', '*')
+      })
     },
-    onProxyReq: (proxyReq, req, res) => {
-        console.log('Proxying request:', req.originalUrl)
-    },
-    onProxyRes: (proxyRes, req, res) => {
-        console.log('Proxying response:', req.url, res.statusCode)
-    },
+
     pathRewrite: { '^/proxy': '' }
 })
 
