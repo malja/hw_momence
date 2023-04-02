@@ -13,7 +13,7 @@ if (!fs.existsSync('public/daily.txt')) {
     process.exit(1)
 }
 
-export const app = express()
+const app = express()
 
 const corsOptions = {
     origin: '*'

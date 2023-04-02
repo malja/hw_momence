@@ -16,7 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "types": [
-      "jest",
       "react",
       "react-dom",
       "styled-components",

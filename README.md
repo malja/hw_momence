@@ -22,8 +22,8 @@ directory.
 To start the server, run:
 
 ```bash
-cd server
-node src/local.js
+cd mock_server
+node src/server.js
 ```
 
 Make sure, that file `/mock_server/public/daily.txt` exists and is up-to-date. It's a source for all responses from
