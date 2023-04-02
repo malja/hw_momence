@@ -26,3 +26,5 @@ app.use('/proxy', createProxyMiddleware({
     },
     pathRewrite: { '^/proxy': '' }
 }));
+
+app.listen(process.env.PORT || 8000)
