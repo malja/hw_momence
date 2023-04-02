@@ -1,17 +1,17 @@
-import express from 'express'
-import cors from 'cors'
-import { createProxyMiddleware } from 'http-proxy-middleware'
-import dotenv from 'dotenv'
+const express = require('express')
+const cors = require('cors')
+const proxyMiddleware = require('http-proxy-middleware')
+const dotenv = require('dotenv')
 dotenv.config()
 
-export const app = express()
+const app = express()
 
 const corsOptions = {
     origin: '*'
 }
 app.use(cors(corsOptions))
 
-app.use('/proxy', createProxyMiddleware({
+app.use('/proxy', proxyMiddleware.createProxyMiddleware({
     target: process.env.EXTERNAL_API_URL,
     changeOrigin: true,
     onError: (err, req, res) => {
@@ -28,3 +28,5 @@ app.use('/proxy', createProxyMiddleware({
 }));
 
 app.listen(process.env.PORT || 8000)
+
+module.exports = app

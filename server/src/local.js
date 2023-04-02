@@ -1,9 +1,9 @@
-import express from 'express'
-import fs from 'fs'
-import colors from 'colors'
-import cors from 'cors'
-import { createProxyMiddleware } from 'http-proxy-middleware'
-import dotenv from 'dotenv'
+const express = require('express')
+const cors = require('cors')
+const fs = require('fs')
+const colors = require('colors')
+const proxyMiddleware = require('http-proxy-middleware')
+const dotenv = require('dotenv')
 dotenv.config()
 
 console.log('Starting local mock server...'.green)
@@ -26,7 +26,7 @@ const dailyData = fs.readFileSync('public/daily.txt', 'utf8')
 
 console.log('> Serving ' + '"daily.txt"'.yellow)
 
-app.use('/proxy', createProxyMiddleware({
+app.use('/proxy', proxyMiddleware.createProxyMiddleware({
     target: process.env.EXTERNAL_API_URL,
     changeOrigin: true,
     onError: (err, req, res) => {
