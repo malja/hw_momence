@@ -21,7 +21,8 @@
       "styled-components",
       "node",
       "vite/client",
-      "vitest/importMeta"
+      "vitest/importMeta",
+      "lodash"
     ]
   },
   "include": ["src"],
