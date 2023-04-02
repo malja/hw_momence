@@ -7,5 +7,5 @@ export default defineConfig({
   test: {
     includeSource: ['src/**/*.{ts,tsx}'],
   },
-  base: '/momence/'
+  base: '/hw_momence/'
 })
