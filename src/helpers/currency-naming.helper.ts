@@ -1,0 +1,37 @@
+export function currencyName(code: string) {
+  const names: Record<string, string> = {
+    AUD: 'Australian Dollar',
+    BRL: 'Brazilian Real',
+    BGN: 'Bulgarian Lev',
+    CAD: 'Canadian Dollar',
+    CNY: 'Chinese Yuan',
+    DKK: 'Danish Krone',
+    EUR: 'Euro',
+    HKD: 'Hong Kong Dollar',
+    HUF: 'Hungarian Forint',
+    ISK: 'Icelandic Króna',
+    XDR: 'International Monetary Fund (IMF) Special Drawing Rights',
+    INR: 'Indian Rupee',
+    IDR: 'Indonesian Rupiah',
+    ILS: 'Israeli New Shekel',
+    JPY: 'Japanese Yen',
+    MYR: 'Malaysian Ringgit',
+    MXN: 'Mexican Peso',
+    NZD: 'New Zealand Dollar',
+    NOK: 'Norwegian Krone',
+    PHP: 'Philippine Peso',
+    PLN: 'Polish Zloty',
+    RON: 'Romanian Leu',
+    SGD: 'Singapore Dollar',
+    ZAR: 'South African Rand',
+    KRW: 'South Korean Won',
+    SEK: 'Swedish Krona',
+    CHF: 'Swiss Franc',
+    THB: 'Thai Baht',
+    TRY: 'Turkish Lira',
+    GBP: 'British Pound',
+    USD: 'United States Dollar',
+  }
+
+  return names[code] || code
+}
