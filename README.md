@@ -16,14 +16,14 @@ yarn install
 
 ## Development
 
-Since CNB API is not CORS enabled, I'm using custom mockup server to serve data. It's located in `mock_server`
+Since CNB API is not CORS enabled, I'm using custom mockup server to serve data. It's located in `server`
 directory.
 
 To start the server, run:
 
 ```bash
-cd mock_server
-node src/server.js
+cd server
+node src/local.js
 ```
 
 Make sure, that file `/mock_server/public/daily.txt` exists and is up-to-date. It's a source for all responses from

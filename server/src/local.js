@@ -2,6 +2,9 @@ import express from 'express'
 import fs from 'fs'
 import colors from 'colors'
 import cors from 'cors'
+import { createProxyMiddleware } from 'http-proxy-middleware'
+import dotenv from 'dotenv'
+dotenv.config()
 
 console.log('Starting local mock server...'.green)
 
@@ -10,7 +13,7 @@ if (!fs.existsSync('public/daily.txt')) {
     process.exit(1)
 }
 
-const app = express()
+export const app = express()
 
 const corsOptions = {
     origin: '*'
@@ -22,6 +25,22 @@ console.log('> Loading data files...')
 const dailyData = fs.readFileSync('public/daily.txt', 'utf8')
 
 console.log('> Serving ' + '"daily.txt"'.yellow)
+
+app.use('/proxy', createProxyMiddleware({
+    target: process.env.EXTERNAL_API_URL,
+    changeOrigin: true,
+    onError: (err, req, res) => {
+        console.error('Proxy error:', err)
+        res.status(500).send('Proxy error')
+    },
+    onProxyReq: (proxyReq, req, res) => {
+        console.log('Proxying request:', req.originalUrl)
+    },
+    onProxyRes: (proxyRes, req, res) => {
+        console.log('Proxying response:', req.url, res.statusCode)
+    },
+    pathRewrite: { '^/proxy': '' }
+}));
 
 app.get('/daily.txt', (req, res) => {
     console.log('GET ' + req.originalUrl, req.headers)
