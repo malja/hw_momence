@@ -3,13 +3,13 @@ const { createProxyMiddleware, responseInterceptor } = require('http-proxy-middl
 const proxy = createProxyMiddleware({
     target: process.env.EXTERNAL_API_URL,
     changeOrigin: true,
+
     selfHandleResponse: true,
 
-    on: {
-      proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
-        res.setHeader('Access-Control-Allow-Origin', '*')
-      })
-    },
+    onProxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
+        res.removeHeader('Access-Control-Allow-Origin')
+        return res
+    }),
 
     pathRewrite: { '^/proxy': '' }
 })
